@@ -1,5 +1,5 @@
 export const dark = {
-    backgroundColor:"rgba(0,0,0,0.9)",
+    backgroundColor:"#343434",
     color:"#ffff",
     border:"royalblue",
     label:"royalblue"

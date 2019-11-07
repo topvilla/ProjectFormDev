@@ -57,7 +57,18 @@ function App() {
     <div className="App">
       <FormV8 observer = {(data)=>{
           setForm(data);
-      }} theme = {liveDark}>
+      }} theme = {dark}>
+
+        
+      <Input label  = "Id" type = "number" name = "id" value = "" message = "Por favor, informe um nome correto!"
+        
+        validators = {[
+            validator.require,
+            validator.max(1000),
+            validator.min(0)
+        ]}
+       
+          /> 
 
       <Input label  = "Name" type = "text" name = "name" value = "" message = "Por favor, informe um nome correto!"
         
