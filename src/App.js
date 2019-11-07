@@ -7,7 +7,7 @@ import Select from './FormV8/Components/Select';
 import {OptionSelect} from './FormV8/Styles/index';
 import * as Mask from './FormV8/Mask/index';
 import * as validator from './FormV8/Validators/index';
-
+import {dark,light,liveDark} from './FormV8/Styles/theme';
 function Button(){
   return(
     <button>enviar</button>
@@ -57,15 +57,19 @@ function App() {
     <div className="App">
       <FormV8 observer = {(data)=>{
           setForm(data);
-      }}>
-        <Input label  = "Name" type = "text" name = "name" value = "" message = "Por favor, informe um nome correto!"
-            validators = {[
-              (value)=>{
-                return value !== "";
-              }
-            ]}
-        /> 
+      }} theme = {liveDark}>
+
+      <Input label  = "Name" type = "text" name = "name" value = "" message = "Por favor, informe um nome correto!"
+        
+        validators = {[
+            validator.require,
+            validator.textAndNumber
+        ]}
+       
+          /> 
+       
          <Input label  = "CellPhone" type = "text" name = "cellphone" value = "" message = "Por favor, informe seu numero correto!"
+          maxLength = {15}
           validators = {[
             (value)=>{
               return value !== "";
@@ -75,14 +79,21 @@ function App() {
             Mask.phone
           }
         /> 
-        <Input label  = "LastName" type = "text" name = "lastName" value = "" message = "Por favor, informe um nome correto!"
-        
+        <Input label  = "Cpf" type = "text" name = "cpf" value = "" message = "Por favor, informe um nome correto!"
+          maxLength = {18}
           validators = {[
               validator.cpf
           ]}
+
           mask = {
             Mask.cpf
           }
+        /> 
+        <Input label  = "E-mail" type = "text" name = "email" value = "" message = "Por favor, informe um nome correto!"
+          maxLength = {18}
+          validators = {[
+              validator.email
+          ]}
         /> 
         <Input label  = "Birth date" type = "date" name = "birthDate" value = "" message = "Por favor, informe um nome correto!"
            validators = {[

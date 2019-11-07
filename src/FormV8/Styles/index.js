@@ -9,11 +9,12 @@ export const FormV8 = styled.form`
     overflow:hidden;
     font-family: 'Roboto', sans-serif;
     padding-bottom:100px;
+    background-color:${prop=>prop.theme.backgroundColor};
+    color:${prop=>prop.theme.color};
 `
 export const InputContainer = styled.div`
     margin-top:60px;
     margin-bottom:60px;
-
     height:120px;
     display:flex;
     flex-flow:column;
@@ -33,7 +34,7 @@ export const InputContainer = styled.div`
         /* background-color:green; */
         position: absolute;
         bottom:${prop=>prop.showLabel?"75px":"15px"};
-        color:${prop=>prop.showLabel?"royalblue":"gray"};
+        color:${prop=>prop.showLabel?`${prop.theme.border}`:""};
 
         font-size:1.2em;
         flex:1;
@@ -42,16 +43,17 @@ export const InputContainer = styled.div`
     }
     input{
         border:none;
-        border-bottom:1px solid gray;
         padding:5px;
         width:100%;
         height:35px;
+        color:${prop=>prop.theme.color};
         margin-bottom:5px;
         z-index:2;
         background-color:transparent;
+        border-bottom:solid 1px gray;
         font-size:${prop=>prop.showLabel?"1em":"0px"};
         :hover{
-            border-bottom:3px solid royalblue;
+            border-bottom:${prop=>prop.isTouch && prop.isValid === false?"2px solid #ff7474":`2px solid ${prop.theme.border}`};
         }
     }
   
@@ -68,7 +70,7 @@ export const SelectContainer = styled(InputContainer)`
         /* background-color:green; */
         position: absolute;
         bottom:${prop=>prop.showLabel?"75px":"15px"};
-        color:${prop=>prop.showLabel?"royalblue":"gray"};
+        color:${prop=>prop.showLabel?`${prop.theme.border}`:""};
 
         font-size:1.2em;
         flex:1;
@@ -79,31 +81,50 @@ export const SelectContainer = styled(InputContainer)`
         border:none;
         border-bottom:1px solid gray;
         margin-top:5px;
-
+        background-color:transparent;
         padding:5px;
         width:100%;
         height:45px;
+        color:${prop=>prop.theme.color};
+
         font-size:${prop=>prop.showLabel?"1em":"0px"};
         :hover{
-            border-bottom:2px solid royalblue;
+            border-bottom:${prop=>prop.isTouch && prop.isValid === false?"2px solid #ff7474":`2px solid ${prop.theme.border}`};
         }
     }
 `
 export const MessageErroForm = styled.span`
-    width:100%;
-    height:35px;
     display:flex;
     align-items:center;
     padding:5px;
     position:absolute;
     margin-top:60px;
-    transition:0.5s;
+    transition:0.8s;
     background-color:#ff7474;
     color:#ffff;
     font-size:1.2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:10px;
     z-index:5;
+    
+    @media screen and (min-width: 1025px) and (max-width:20000px){
+        width:50%;
+        left:5px;
+        height:45px;
+
+
+    }
+    @media screen and (min-width: 601px) and (max-width:1024px){
+        width:60%;
+        left:5px;
+        height:45px;
+
+    }
+    @media screen and (min-width: 0px) and (max-width:600px){
+        width:100%;
+        height:35px;
+
+    }
 `
 
 export const OptionSelect  = styled.option`

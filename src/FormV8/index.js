@@ -2,53 +2,64 @@ import React,{useState,useEffect} from 'react';
 
 import Context from './Store/Context';
 import {FormV8 as Form} from './Styles/index';
+import PropTypes from 'prop-types';
+
 const FormV8 = (props)=>{
+
+    const rootForm = {
+        id:Math.ceil(Math.random() * 1000),
+        theme:props.theme,
+        inputs:{
+
+        },
+        value:{
+
+        },
+        valid:false
+    };
     const {children} = props;
 
-    const [state,setState] = useState(setUpInputs());
-    
+    const [state,setState] = useState(setUpInputsAndForm(rootForm));
+
     useEffect(()=>{
         observerFormValue();
-    },[state])
+    },[state]);
+
     function observerFormValue(){
         props.observer(state);
     }
-    function setUpInputs(){
-        const rootForm = {
-            inputs:{
 
-            },
-            value:{
-
-            },
-            valid:false
-        };
+    function setUpInputsAndForm(rootForm){
         React.Children.forEach(children,(child)=>{
-           if(child.props.label !== undefined && child.props.name !== undefined && child.props.value !== undefined ){
-            rootForm.inputs[child.props.name] = {
-                value:child.props.value,
-                valid:child.props.validators.every((validator)=>{
-                    if(child.props.value !== undefined){
-                        return validator(child.props.value);
+            setUpInputAndSetForm(child,rootForm);
+        })
+        return rootForm;
+    }
+    function setUpInputAndSetForm(input,rootForm){
+        if(input.props.label !== undefined && input.props.name !== undefined && input.props.value !== undefined ){
+            rootForm.inputs[input.props.name] = {
+                formId:rootForm.id,
+                value:input.props.value,
+                valid:input.props.validators.every((validator)=>{
+                    if(input.props.value !== undefined){
+                        return validator(input.props.value);
                     }
                 }),
                 touch:false,
                 setValue:(value)=>{
-                    setInputsValue(value,child);
+                    setInputsValue(value,input);
                     formIsValid();
                     setState({...state});
                 },
                 setTouch:()=>{
-                    state.inputs[child.props.name].touch = true;
+                    state.inputs[input.props.name].touch = true;
                     formIsValid();
                     setState({...state});
                 }
             }
-            rootForm.value[child.props.name] = child.props.value; 
+            rootForm.value[input.props.name] = input.props.value; 
            }
-          
-        })
-        return rootForm;
+
     }
     function setInputsValue(value,child){
         state.inputs[child.props.name].value = value;
@@ -59,6 +70,7 @@ const FormV8 = (props)=>{
             }
         });
     }
+
     function formIsValid(){
         let isValid = true;
         for(let prop in state.inputs){
@@ -70,9 +82,8 @@ const FormV8 = (props)=>{
             state.valid = isValid;
         }
     }
-   
     return(
-        <Form>
+        <Form theme = {props.theme}>
             <Context.Provider value = {{
                 store:state
             }}>
@@ -80,5 +91,12 @@ const FormV8 = (props)=>{
             </Context.Provider>
         </Form>
     );
+}
+FormV8.propTypes = {
+    theme: PropTypes.object,
+    observer:PropTypes.func.isRequired
+};
+FormV8.defaultProps = {
+    theme:"ligth"
 }
 export default FormV8;

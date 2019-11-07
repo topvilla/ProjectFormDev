@@ -6,12 +6,15 @@ import {InputContainer,MessageErroForm} from '../../Styles/index'
 
 const Input = (props)=>{    
     const [actionMovin,setActionMovin] = useState(false);
-    const {label,type,name,store,message,mask} = props;
+    const {label,type,name,store,message,mask,maxLength} = props;
     const inputV8 = store.inputs[name];
+
     const handlerEvent = (event)=>{
+
         handlerEventFocus(event);
         handlerEventBlur(event);
         setStoreValueInput(event);
+
     }
     const handlerEventFocus = (event) =>{
         if(event.type === "focus"){
@@ -34,13 +37,12 @@ const Input = (props)=>{
     }
     const setStoreValueInput = (event)=>{
         const value = event.target.value;
-        if(value !== undefined && value !== ""){
+        
             if(mask !== undefined && event.key !== undefined){
                 inputV8.setValue(mask(value,event.key));
                 return;
             }
             inputV8.setValue(value);
-        }
        
     }
     const handlerMessageError = ()=>{
@@ -50,12 +52,14 @@ const Input = (props)=>{
     }
    
     return(
-        <InputContainer showLabel = {actionMovin}>
+        <InputContainer showLabel = {actionMovin}   isValid = {inputV8.valid} isTouch = {inputV8.touch} theme = {store.theme}> 
             <input  type = {type} name = {name} value = {inputV8.value} 
              onChange = {handlerEvent}
              onFocus = {handlerEvent}
              onBlur  = {handlerEvent}
              onKeyUp = {handlerEvent}
+             maxLength = {maxLength}
+
             />
             <label>{label}</label>
             {

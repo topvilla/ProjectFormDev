@@ -37,7 +37,7 @@ const Select = (props)=>{
     }
     return(
         
-        <SelectContainer showLabel = {actionMovin}>
+        <SelectContainer showLabel = {actionMovin} theme = {store.theme}>
             <label>{label}</label>
             <select  name = {name} value = {inputV8.value} 
             onChange = {handlerEvent}

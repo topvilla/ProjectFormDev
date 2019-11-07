@@ -9,9 +9,9 @@ export const cpf = (input,key)=>{
         return input+"-"
     }
     if(input.length === 14 && key !== "Backspace"){
-        console.log(input);
-        return input.substring(0,14);
+        return input;
     }
+    return input;
 }
 // //19260-000
 // export const cep = (input,event)=>{

@@ -43,7 +43,6 @@ export const email = (email)=>{
     return re.test(String(email).toLowerCase());
 }
 export const cpf =  function validarCPF(cpf) {	
-	console.log(cpf);
 	cpf = cpf.replace(/[^\d]+/g,'');	
 	if(cpf === '') return false;	
 	// Elimina CPFs invalidos conhecidos	
