@@ -37,7 +37,7 @@ const Select = (props)=>{
     }
     return(
         
-        <SelectContainer showLabel = {actionMovin} theme = {store.theme}>
+        <SelectContainer showLabel = {actionMovin} theme = {store.theme}  isValid = {inputV8.valid} isTouch = {inputV8.touch}>
             <label>{label}</label>
             <select  name = {name} value = {inputV8.value} 
             onChange = {handlerEvent}

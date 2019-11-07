@@ -11,8 +11,8 @@ export const light = {
     label:"royalblue"
 }
 export const liveDark = {
-    backgroundColor:"rgba(0,0,0,0.9)",
-    color:"gray",
+    backgroundColor:"#343434",
+    color:"#ffff",
     border:"green",
     label:"green"
 }

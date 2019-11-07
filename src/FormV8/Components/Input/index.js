@@ -53,13 +53,13 @@ const Input = (props)=>{
    
     return(
         <InputContainer showLabel = {actionMovin}   isValid = {inputV8.valid} isTouch = {inputV8.touch} theme = {store.theme}> 
-            <input  type = {type} name = {name} value = {inputV8.value} 
+            <input  type = {type} name = {name} value = {inputV8.value}  
              onChange = {handlerEvent}
              onFocus = {handlerEvent}
              onBlur  = {handlerEvent}
              onKeyUp = {handlerEvent}
              maxLength = {maxLength}
-
+            
             />
             <label>{label}</label>
             {
