@@ -56,8 +56,10 @@ function App() {
   return (
     <div className="App">
       <FormV8 observer = {(data)=>{
+        console.log(data);
           setForm(data);
-      }} theme = {dark}>
+
+      }} theme = {light}>
 
         
       <Input label  = "Id" type = "number" name = "id" value = "" message = "Por favor, informe um nome correto!"

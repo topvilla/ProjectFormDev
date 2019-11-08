@@ -36,12 +36,12 @@ export const InputContainer = styled.div`
         @media screen and (min-width: 1025px) and (max-width:20000px){
             bottom:${prop=>prop.showLabel?"60px":"20px"};
             color:${prop=>prop.showLabel?`${prop.theme.border}`:""};
-            font-size:1.2em;
+            font-size:${prop=>prop.showLabel?"1em":"1.2em"};
             height:${prop=>prop.showLabel?"15px":"30px"};
             left:${prop=>prop.showLabel?"10px":"1px"};
             background-color:${prop=>prop.theme.backgroundColor};
             z-index:${prop=>prop.showLabel?5:1};
-            width:120px;
+            width:80px;
             justify-content:center;
             border-radius:10px;
 
@@ -50,12 +50,12 @@ export const InputContainer = styled.div`
         @media screen and (min-width: 601px) and (max-width:1024px){
             bottom:${prop=>prop.showLabel?"60px":"20px"};
             color:${prop=>prop.showLabel?`${prop.theme.border}`:""};
-            font-size:1.2em;
+            font-size:${prop=>prop.showLabel?"1em":"1.2em"};
             height:${prop=>prop.showLabel?"15px":"30px"};
             left:${prop=>prop.showLabel?"10px":"1px"};
             background-color:${prop=>prop.theme.backgroundColor};
             z-index:${prop=>prop.showLabel?5:1};
-            width:120px;
+            width:80px;
             justify-content:center;
             border-radius:10px;
 
@@ -76,6 +76,7 @@ export const InputContainer = styled.div`
         margin-bottom:5px;
         z-index:2;
         background-color:transparent;
+        display:flex;
         font-size:${prop=>prop.showLabel?"1em":"0px"};
         @media screen and (min-width: 1025px) and (max-width:20000px){
             ${prop=>prop.isTouch && prop.isValid === true?`border:2px solid ${prop.theme.border}`:`border:2px solid gray`};
@@ -84,7 +85,6 @@ export const InputContainer = styled.div`
             }
             height:50px;
             border-radius:5px;
-
         }
         @media screen and (min-width: 601px) and (max-width:1024px){
             ${prop=>prop.isTouch && prop.isValid === true?`border:2px solid ${prop.theme.border}`:`border:2px solid gray`};
